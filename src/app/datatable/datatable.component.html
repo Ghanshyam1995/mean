@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="form-group">
+    <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Type to filter the name column...' (keyup)='filterDatatable($event)'
+    />
+  </div>
+
+  <ngx-datatable #table class="material striped scroll-vertical" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [columns]="cols"
+    [footerHeight]="50" [rowHeight]="'auto'" [externalSorting]="true" (sort)="onSort($event)" [reorderable]="reorderable" [selectionType]="'checkbox'"
+    [selectAllRowsOnPage]="false">
+
+    <ngx-datatable-column name="Name" class="headerColor"></ngx-datatable-column>
+    <ngx-datatable-column name="Gender"></ngx-datatable-column>
+    <ngx-datatable-column name="Enroll"></ngx-datatable-column>
+    <ngx-datatable-column name="Age"></ngx-datatable-column>
+    <ngx-datatable-column name="Branch"></ngx-datatable-column>
+
+    <ngx-datatable-column name="Action" [width]="65" [sortable]="false">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+
+        <button (click)="deleteUser(row.name)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+        <button (click)="editUser(row.name)" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></button>
+
+      </ng-template>
+    </ngx-datatable-column>
+
+  </ngx-datatable>
+
+  <div class="row dropdown">
+    <div class="col-sm-3">
+      <select class="form-control" name="custom-select" (change)="takeAction($event.target.value)" #action name="action" ngModel="action">
+        <option value="" selected="selected" disabled> Select Your Choice</option>
+        <option class="dropdown-item" value="1">Delete All</option>
+        <option class="dropdown-item" value="2">Enabled</option>
+        <option class="dropdown-item" value="3">Disabled</option>
+      </select>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <pagination [totalItems]="totalItems" [(ngModel)]="currentPage"></pagination>
+  <p-paginator [rows]="10" [totalRecords]="100" pageLinkSize="10"></p-paginator>
+
+
+
+  <div class=form-control>
+    <input type="text" (keyup)='filterDatatable($event)'>
+
+    <ngx-datatable #table class="material striped scroll-vertical" [rows]="data" [columns]="cols" [columnMode]="'force'" [headerHeight]="35"
+      [footerHeight]="35" [rowHeight]="'auto'" [limit]="pageSize" [selectionType]="'single'">
+    </ngx-datatable>
+    <input type="text" placeholder="Here I am" />
+  </div>
+
+
+
+
+  <button (click)="clickMe()">submit</button>
+
+  <div id="myModal" #myModal class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form [formGroup]="studentForm" (ngSubmit)="saveUser(studentForm.value)">
+        <div class="modal-body">
+          <div class="row ">
+
+            <div class="form-group">
+              <label class="control-label col-md-12">Name</label>
+              <div class="col-md-12">
+                <input class="form-control" type="text" readonly formControlName= "name"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-md-12">Gender</label>
+              <div class="col-md-12">
+                <select class="form-control" formControlName="gender">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-md-12">Enroll</label>
+              <div class="col-md-12">
+                <input class="form-control" type="text"  formControlName="enroll"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-12">Age</label>
+              <div class="col-md-12">
+                <input class="form-control" type="number" formControlName="age"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-md-12">Branch</label>
+              <div class="col-md-12">
+                <input class="form-control" type="text" formControlName="branch"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-danger" (click)="closeModal()">Cancel</button>
+          <button class="btn btn-success pull-right" type="submit" [disabled]="!studentForm.valid">Save</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>

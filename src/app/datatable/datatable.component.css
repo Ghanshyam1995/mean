@@ -1,0 +1,39 @@
+ /* @import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';  */
+/* @import '~@swimlane/ngx-datatable/release/assets/icons.css';  */
+
+
+/* Css for responsive Approach*/
+
+ /* @media screen and (max-width: 800px) {
+      .desktop-hidden {
+        display: initial;
+      }
+      .mobile-hidden {
+        display: none;
+      }
+    }
+    @media screen and (min-width: 800px) {
+      .desktop-hidden {
+        display: none;
+      }
+      .mobile-hidden {
+        display: initial;
+      }
+    } */
+    /* .form-control{
+      background-color:
+#9999ad;
+    } */
+
+    .headerColor{
+      background-color: aqua;
+    }
+
+    .ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell{
+      background-color: aqua
+    }
+
+    .modal.fade.show{
+      display: block;
+    }
